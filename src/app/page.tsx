@@ -1,5 +1,7 @@
+import { CreateMeeting } from "@/components/create-meeting";
+
 const Homepage = () => {
-  return <>homepage</>;
+  return <CreateMeeting />;
 };
 
 export default Homepage;
