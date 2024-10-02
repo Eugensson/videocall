@@ -16,9 +16,9 @@ import { useEffect, useState } from "react";
 import { useLoadCall } from "@/hooks/use-load-call";
 import { useStreamCall } from "@/hooks/use-stream-call";
 import { Button, buttonClassName } from "@/components/button";
-import { PermissionPrompt } from "./permission-prompt";
-import { FlexibleCallLayout } from "./flexible-call-layout";
-import { AudioVolumeIndicator } from "./audio-volume-indicator";
+import { PermissionPrompt } from "@/components/permission-prompt";
+import { FlexibleCallLayout } from "@/components/flexible-call-layout";
+import { AudioVolumeIndicator } from "@/components/audio-volume-indicator";
 
 interface MeetingProps {
   id: string;
@@ -39,7 +39,9 @@ export const Meeting = ({ id }: MeetingProps) => {
 
   const notAllowedToJoin =
     call.type === "private-meeting" &&
-    (!user || call.state.members.find((m) => m.user.id === user.id));
+    (!user || !call.state.members.find((m) => m.user.id === user.id));
+
+  console.log("notAllowedToJoin", notAllowedToJoin);
 
   if (notAllowedToJoin) {
     return (

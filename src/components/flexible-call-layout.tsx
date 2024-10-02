@@ -12,7 +12,7 @@ import {
 import { useRouter } from "next/navigation";
 
 import { useStreamCall } from "@/hooks/use-stream-call";
-import { EndCallButton } from "@/app/meeting/[id]/_components/end-call-button";
+import { EndCallButton } from "@/components/end-call-button";
 
 type CallLayout = "speaker-vertical" | "speaker-horizontal" | "grid";
 

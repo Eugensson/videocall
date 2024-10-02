@@ -1,11 +1,12 @@
 import { Metadata } from "next";
+import { currentUser } from "@clerk/nextjs/server";
 
-import { Meeting } from "@/app/meeting/[id]/_components/meeting";
+import { Meeting } from "@/components/meeting";
+import { MeetingLogin } from "@/components/meeting-login";
 
 interface MeetingIdPageProps {
-  params: {
-    id: string;
-  };
+  params: { id: string };
+  searchParams: { guest: string };
 }
 
 export const generateMetadata = ({
@@ -16,7 +17,18 @@ export const generateMetadata = ({
   };
 };
 
-const MeetingIdPage = ({ params: { id } }: MeetingIdPageProps) => {
+const MeetingIdPage = async ({
+  params: { id },
+  searchParams: { guest },
+}: MeetingIdPageProps) => {
+  const user = await currentUser();
+
+  const guestMode = guest === "true";
+
+  if (!user && !guestMode) {
+    return <MeetingLogin />;
+  }
+
   return <Meeting id={id} />;
 };
 
