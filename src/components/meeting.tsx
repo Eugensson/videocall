@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 
 import { useLoadCall } from "@/hooks/use-load-call";
 import { useStreamCall } from "@/hooks/use-stream-call";
+import { RecordingsList } from "@/components/recordings-list";
 import { Button, buttonClassName } from "@/components/button";
 import { PermissionPrompt } from "@/components/permission-prompt";
 import { FlexibleCallLayout } from "@/components/flexible-call-layout";
@@ -197,6 +198,10 @@ const MeetingEndedScreen = () => {
       <Link href="/" className={buttonClassName}>
         Go home
       </Link>
+      <div className="space-y-3">
+        <h2 className="text-xl font-bold text-center">Recordings</h2>
+        <RecordingsList />
+      </div>
     </div>
   );
 };
